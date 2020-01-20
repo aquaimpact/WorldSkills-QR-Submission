@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Session2ModelStoreContainer" CdmEntityContainer="Session2Entities">
+    <EntitySetMapping Name="Benefits">
+      <EntityTypeMapping TypeName="Session2Model.Benefit">
+        <MappingFragment StoreEntitySet="Benefit">
+          <ScalarProperty Name="benefitId" ColumnName="benefitId" />
+          <ScalarProperty Name="packageIdFK" ColumnName="packageIdFK" />
+          <ScalarProperty Name="benefitName" ColumnName="benefitName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bookings">
+      <EntityTypeMapping TypeName="Session2Model.Booking">
+        <MappingFragment StoreEntitySet="Booking">
+          <ScalarProperty Name="bookingId" ColumnName="bookingId" />
+          <ScalarProperty Name="userIdFK" ColumnName="userIdFK" />
+          <ScalarProperty Name="packageIdFK" ColumnName="packageIdFK" />
+          <ScalarProperty Name="quantityBooked" ColumnName="quantityBooked" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Packages">
+      <EntityTypeMapping TypeName="Session2Model.Package">
+        <MappingFragment StoreEntitySet="Package">
+          <ScalarProperty Name="packageId" ColumnName="packageId" />
+          <ScalarProperty Name="packageTier" ColumnName="packageTier" />
+          <ScalarProperty Name="packageName" ColumnName="packageName" />
+          <ScalarProperty Name="packageValue" ColumnName="packageValue" />
+          <ScalarProperty Name="packageQuantity" ColumnName="packageQuantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="Session2Model.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="passwd" ColumnName="passwd" />
+          <ScalarProperty Name="userTypeIdFK" ColumnName="userTypeIdFK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_Type">
+      <EntityTypeMapping TypeName="Session2Model.User_Type">
+        <MappingFragment StoreEntitySet="User_Type">
+          <ScalarProperty Name="userTypeId" ColumnName="userTypeId" />
+          <ScalarProperty Name="userTypeName" ColumnName="userTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Session3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Arrival">
+    <Key>
+      <PropertyRef Name="arrivalId" />
+    </Key>
+    <Property Name="arrivalId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userIdFK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="arrivalDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="arrivalTime" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="numberHead" Type="Int32" Nullable="false" />
+    <Property Name="numberDelegate" Type="Int32" Nullable="false" />
+    <Property Name="numberCompetitors" Type="Int32" Nullable="false" />
+    <Property Name="numberCars" Type="Int32" Nullable="false" />
+    <Property Name="number19seat" Type="Int32" Nullable="false" />
+    <Property Name="number42seat" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Arrival_User" FromRole="Arrival" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Hotel">
+    <Key>
+      <PropertyRef Name="hotelId" />
+    </Key>
+    <Property Name="hotelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="hotelName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="singleRate" Type="Int32" Nullable="false" />
+    <Property Name="doubleRate" Type="Int32" Nullable="false" />
+    <Property Name="numSingleRoomsTotal" Type="Int32" Nullable="false" />
+    <Property Name="numDoubleRoomsTotal" Type="Int32" Nullable="false" />
+    <Property Name="numSingleRoomsBooked" Type="Int32" Nullable="false" />
+    <Property Name="numDoubleRoomsBooked" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Hotel_Booking" Relationship="Self.FK_Hotel_Booking_Hotel" FromRole="Hotel" ToRole="Hotel_Booking" />
+  </EntityType>
+  <EntityType Name="Hotel_Booking">
+    <Key>
+      <PropertyRef Name="bookingId" />
+    </Key>
+    <Property Name="bookingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="hotelIdFK" Type="Int32" Nullable="false" />
+    <Property Name="userIdFK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="numSingleRoomsRequired" Type="Int32" Nullable="false" />
+    <Property Name="numDoubleRoomsRequired" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Hotel" Relationship="Self.FK_Hotel_Booking_Hotel" FromRole="Hotel_Booking" ToRole="Hotel" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Hotel_Booking_User" FromRole="Hotel_Booking" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="countryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="passwd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userTypeIdFK" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Arrivals" Relationship="Self.FK_Arrival_User" FromRole="User" ToRole="Arrival" />
+    <NavigationProperty Name="Hotel_Booking" Relationship="Self.FK_Hotel_Booking_User" FromRole="User" ToRole="Hotel_Booking" />
+    <NavigationProperty Name="User_Type" Relationship="Self.FK_User_User_Type" FromRole="User" ToRole="User_Type" />
+  </EntityType>
+  <EntityType Name="User_Type">
+    <Key>
+      <PropertyRef Name="userTypeId" />
+    </Key>
+    <Property Name="userTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_User_Type" FromRole="User_Type" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Arrival_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Arrival" Type="Self.Arrival" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Arrival">
+        <PropertyRef Name="userIdFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hotel_Booking_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+    <End Role="Hotel_Booking" Type="Self.Hotel_Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="hotelId" />
+      </Principal>
+      <Dependent Role="Hotel_Booking">
+        <PropertyRef Name="hotelIdFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hotel_Booking_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Hotel_Booking" Type="Self.Hotel_Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Hotel_Booking">
+        <PropertyRef Name="userIdFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_User_Type">
+    <End Role="User_Type" Type="Self.User_Type" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Type">
+        <PropertyRef Name="userTypeId" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="userTypeIdFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Session3Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Arrivals" EntityType="Self.Arrival" />
+    <EntitySet Name="Hotels" EntityType="Self.Hotel" />
+    <EntitySet Name="Hotel_Booking" EntityType="Self.Hotel_Booking" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="User_Type" EntityType="Self.User_Type" />
+    <AssociationSet Name="FK_Arrival_User" Association="Self.FK_Arrival_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Arrival" EntitySet="Arrivals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hotel_Booking_Hotel" Association="Self.FK_Hotel_Booking_Hotel">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="Hotel_Booking" EntitySet="Hotel_Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hotel_Booking_User" Association="Self.FK_Hotel_Booking_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Hotel_Booking" EntitySet="Hotel_Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_User_Type" Association="Self.FK_User_User_Type">
+      <End Role="User_Type" EntitySet="User_Type" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

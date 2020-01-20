@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Session3ModelStoreContainer" CdmEntityContainer="Session3Entities">
+    <EntitySetMapping Name="Arrivals">
+      <EntityTypeMapping TypeName="Session3Model.Arrival">
+        <MappingFragment StoreEntitySet="Arrival">
+          <ScalarProperty Name="arrivalId" ColumnName="arrivalId" />
+          <ScalarProperty Name="userIdFK" ColumnName="userIdFK" />
+          <ScalarProperty Name="arrivalDate" ColumnName="arrivalDate" />
+          <ScalarProperty Name="arrivalTime" ColumnName="arrivalTime" />
+          <ScalarProperty Name="numberHead" ColumnName="numberHead" />
+          <ScalarProperty Name="numberDelegate" ColumnName="numberDelegate" />
+          <ScalarProperty Name="numberCompetitors" ColumnName="numberCompetitors" />
+          <ScalarProperty Name="numberCars" ColumnName="numberCars" />
+          <ScalarProperty Name="number19seat" ColumnName="number19seat" />
+          <ScalarProperty Name="number42seat" ColumnName="number42seat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hotels">
+      <EntityTypeMapping TypeName="Session3Model.Hotel">
+        <MappingFragment StoreEntitySet="Hotel">
+          <ScalarProperty Name="hotelId" ColumnName="hotelId" />
+          <ScalarProperty Name="hotelName" ColumnName="hotelName" />
+          <ScalarProperty Name="singleRate" ColumnName="singleRate" />
+          <ScalarProperty Name="doubleRate" ColumnName="doubleRate" />
+          <ScalarProperty Name="numSingleRoomsTotal" ColumnName="numSingleRoomsTotal" />
+          <ScalarProperty Name="numDoubleRoomsTotal" ColumnName="numDoubleRoomsTotal" />
+          <ScalarProperty Name="numSingleRoomsBooked" ColumnName="numSingleRoomsBooked" />
+          <ScalarProperty Name="numDoubleRoomsBooked" ColumnName="numDoubleRoomsBooked" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hotel_Booking">
+      <EntityTypeMapping TypeName="Session3Model.Hotel_Booking">
+        <MappingFragment StoreEntitySet="Hotel_Booking">
+          <ScalarProperty Name="bookingId" ColumnName="bookingId" />
+          <ScalarProperty Name="hotelIdFK" ColumnName="hotelIdFK" />
+          <ScalarProperty Name="userIdFK" ColumnName="userIdFK" />
+          <ScalarProperty Name="numSingleRoomsRequired" ColumnName="numSingleRoomsRequired" />
+          <ScalarProperty Name="numDoubleRoomsRequired" ColumnName="numDoubleRoomsRequired" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="Session3Model.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="countryName" ColumnName="countryName" />
+          <ScalarProperty Name="passwd" ColumnName="passwd" />
+          <ScalarProperty Name="userTypeIdFK" ColumnName="userTypeIdFK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_Type">
+      <EntityTypeMapping TypeName="Session3Model.User_Type">
+        <MappingFragment StoreEntitySet="User_Type">
+          <ScalarProperty Name="userTypeId" ColumnName="userTypeId" />
+          <ScalarProperty Name="userTypeName" ColumnName="userTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
